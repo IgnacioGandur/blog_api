@@ -15,6 +15,65 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  username String @unique
+  id            Int           @id @default(autoincrement())
+  firstName     String        @db.VarChar(30)
+  lastName      String        @db.VarChar(30)
+  username      String        @unique @db.VarChar(50)
+  password      String
+  isAuthor      Boolean       @default(false)
+  posts         Post[]
+  comments      Comment[]
+  likedPosts    LikePost[]
+  likedComments LikeComment[]
+}
+
+model Post {
+  id               Int        @id @default(autoincrement())
+  title            String
+  content          String     @db.Text
+  imageUrl         String
+  shortDescription String
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  categories       Category[]
+  user             User       @relation(fields: [userId], references: [id])
+  userId           Int
+  comments         Comment[]
+  likes            LikePost[]
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique @db.VarChar(50)
+  slug  String @unique @db.VarChar(50)
+  posts Post[]
+}
+
+model Comment {
+  id      Int           @id @default(autoincrement())
+  content String
+  user    User          @relation(fields: [userId], references: [id])
+  userId  Int
+  post    Post          @relation(fields: [postId], references: [id])
+  postId  Int
+  likes   LikeComment[]
+}
+
+model LikePost {
+  post   Post @relation(fields: [postId], references: [id])
+  postId Int
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  @@id([postId, userId])
+  @@unique([postId, userId])
+}
+
+model LikeComment {
+  comment   Comment @relation(fields: [commentId], references: [id])
+  commentId Int
+  user      User    @relation(fields: [userId], references: [id])
+  userId    Int
+
+  @@id([commentId, userId])
 }
