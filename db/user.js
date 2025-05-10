@@ -5,18 +5,24 @@ class User {
 		this.prisma = prisma;
 	}
 
-	async createUser(username) {
+	async registerUser(firstName, lastName, username, password) {
 		try {
 			const user = await this.prisma.user.create({
+				omit: {
+					password: true
+				},
 				data: {
-					username: username
+					firstName,
+					lastName,
+					username,
+					password
 				}
 			})
 
 			return user;
 		} catch (error) {
-			console.error("Prisma error: Something went wrong when trying to create a user.")
-			throw new Error(error);
+			console.error("Prisma error:", error);
+			throw new Error("Something went wrong when trying to register a new user.");
 		}
 	}
 
