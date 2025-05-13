@@ -76,6 +76,44 @@ class User {
 			throw new Error("Something went wrong when trying to check if a user exists by it's id.");
 		}
 	}
+
+	async checkIfUsernameIsAvailable(username) {
+		try {
+			const result = await this.prisma.user.findUnique({
+				where: {
+					username,
+				}
+			})
+
+			if (result) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (error) {
+			console.error("Prisma error:", error);
+			throw new Error("Something went wrong when trying to check if the username is available.");
+		}
+	}
+
+	async checkIfUserExistsByUsername(username) {
+		try {
+			const result = await this.prisma.user.findUnique({
+				where: {
+					username
+				}
+			})
+
+			if (result) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (error) {
+			console.error("Prisma error:", error);
+			throw new Error("Something went wrong when trying to check if the user exists by it's username.");
+		}
+	}
 }
 
 export default new User(prisma);

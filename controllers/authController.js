@@ -11,7 +11,7 @@ const cookieOptions = {
 const authController = {
 	registerPost: async (req, res) => {
 		const { firstName, lastName, username, password } = req.body;
-		const hashedPassword = bcrypt.hash(password, process.env.BCRYPT_SALT);
+		const hashedPassword = await bcrypt.hash(password, Number(process.env.BCRYPT_SALT));
 		const user = await userModel.registerUser(firstName, lastName, username, hashedPassword);
 
 		res.json({
