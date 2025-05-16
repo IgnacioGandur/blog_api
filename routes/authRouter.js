@@ -1,4 +1,5 @@
 import authController from "../controllers/authController.js";
+import usersRouter from "./usersRouter.js";
 
 // Packages
 import { Router } from "express";

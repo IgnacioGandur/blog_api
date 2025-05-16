@@ -41,11 +41,11 @@ class User {
 		}
 	}
 
-	async getUserById(id) {
+	async getUserById(id, omitPassword = true) {
 		try {
 			const user = await this.prisma.user.findUnique({
 				omit: {
-					password: true,
+					password: omitPassword,
 				},
 				where: {
 					id: Number(id),
@@ -112,6 +112,21 @@ class User {
 		} catch (error) {
 			console.error("Prisma error:", error);
 			throw new Error("Something went wrong when trying to check if the user exists by it's username.");
+		}
+	}
+
+	async deleteUser(id) {
+		try {
+			const user = await this.prisma.user.delete({
+				where: {
+					id: Number(id),
+				}
+			})
+
+			return user;
+		} catch (error) {
+			console.error("Prisma error: ", error);
+			throw new Error("Something went wrong when trying to delete the user.");
 		}
 	}
 }
