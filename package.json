@@ -20,10 +20,10 @@
   "homepage": "https://github.com/IgnacioGandur/blog_api#readme",
   "devDependencies": {
     "nodemon": "^3.1.10",
-    "prisma": "^6.7.0"
+    "prisma": "^6.8.2"
   },
   "dependencies": {
-    "@prisma/client": "^6.7.0",
+    "@prisma/client": "^6.8.2",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
