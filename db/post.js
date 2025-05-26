@@ -5,6 +5,35 @@ class Post {
 		this.prisma = prisma;
 	}
 
+	async getAllPosts() {
+		try {
+			const posts = await this.prisma.post.findMany();
+			return posts;
+		} catch (error) {
+			console.error("Prisma error:", error);
+			throw new Error("Something went wrongg when trying to get all posts.");
+		}
+	}
+
+	async getPostById(postId) {
+		try {
+			const post = await this.prisma.post.findUnique({
+				where: {
+					id: Number(postId),
+				},
+				include: {
+					categories: true,
+				}
+			})
+
+			return post;
+		} catch (error) {
+			console.error("Prisma error:", error);
+			throw new Error("Something went wrong when trying to get a post by it's id.");
+		}
+	}
+
+
 	async createPost(
 		userId,
 		title,

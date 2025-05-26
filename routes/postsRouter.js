@@ -4,11 +4,14 @@ import checkIfUserIsAuthor from "../middleware/checkIfUserIsAuthor.js";
 import validatePostCreation from "../middleware/validators/validatePostCreation.js";
 import validatePartialPostUpdate from "../middleware/validators/validatePartialPostUpdate.js";
 import validatePostDeletion from "../middleware/validators/validatePostDeletion.js";
+import validateIfPostExists from "../middleware/validators/validateIfPostExists.js";
+import commentsRouter from "./commentsRouter.js";
 
-const postsRouter = Router();
+const postsRouter = Router({ mergeParams: true });
 
 postsRouter
 	.route("/")
+	.get(postsController.getAllPosts)
 	.post(
 		checkIfUserIsAuthor,
 		validatePostCreation,
@@ -17,14 +20,22 @@ postsRouter
 
 postsRouter
 	.route("/:postId")
-	.all(checkIfUserIsAuthor)
+	.get(
+		validateIfPostExists,
+		postsController.getPost
+	)
 	.patch(
+		checkIfUserIsAuthor,
 		validatePartialPostUpdate,
 		postsController.partialPostUpdate
 	)
 	.delete(
+		checkIfUserIsAuthor,
 		validatePostDeletion,
 		postsController.deletePost
 	);
+
+postsRouter
+	.use("/:postId/comments", commentsRouter);
 
 export default postsRouter;

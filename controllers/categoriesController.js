@@ -5,6 +5,16 @@ function createCategorySlug(name) {
 }
 
 const categoriesController = {
+	getAllCategories: async (req, res) => {
+		const categories = await categoryModel.getAllCategories();
+
+		res.json({
+			success: true,
+			message: "All categories retrieved successfully!",
+			categories: categories,
+		})
+	},
+
 	createCategory: async (req, res) => {
 		const { name } = req.body;
 		const slug = createCategorySlug(name);

@@ -2,6 +2,27 @@ import jwt from "jsonwebtoken";
 import postModel from "../db/post.js";
 
 const postsController = {
+	getPost: async (req, res) => {
+		const { postId } = req.params;
+		const post = await postModel.getPostById(postId);
+
+		res.json({
+			success: true,
+			message: "Post retrieved successfully!",
+			post: post,
+		})
+	},
+
+	getAllPosts: async (req, res) => {
+		const posts = await postModel.getAllPosts();
+
+		res.json({
+			success: true,
+			message: "All posts retrieved successfully!",
+			posts: posts,
+		})
+	},
+
 	createPost: async (req, res) => {
 		const {
 			title,

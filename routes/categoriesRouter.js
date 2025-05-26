@@ -8,6 +8,9 @@ const categoriesRouter = Router();
 
 categoriesRouter
 	.route("/")
+	.get(
+		categoriesController.getAllCategories,
+	)
 	.post(
 		checkIfUserIsAuthor,
 		validateCategoryCreation,
@@ -16,8 +19,8 @@ categoriesRouter
 
 categoriesRouter
 	.route("/:categoryId")
-	.all(checkIfUserIsAuthor)
 	.put(
+		checkIfUserIsAuthor,
 		validateCategoryCreation,
 		categoriesController.updateCategory
 	)

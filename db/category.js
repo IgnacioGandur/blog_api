@@ -21,6 +21,16 @@ class Category {
 		}
 	}
 
+	async getAllCategories() {
+		try {
+			const categories = await this.prisma.category.findMany();
+			return categories;
+		} catch (error) {
+			console.error("Prisma error:", error);
+			throw new Error("Something went wrong when trying to get all categories.");
+		}
+	}
+
 	async checkIfCategoryAlreadyExists(name) {
 		try {
 			const result = await this.prisma.category.findUnique({
