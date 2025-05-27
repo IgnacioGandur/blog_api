@@ -3,6 +3,7 @@ import commentsController from "../controllers/commentsController.js";
 import validateComment from "../middleware/validators/validateComment.js";
 import checkIfUserIsLogged from "../middleware/checkIfUserIsLogged.js";
 import validateCommentDeletion from "../middleware/validators/validateCommentDeletion.js";
+import validateCommentUpdate from "../middleware/validators/validateCommentUpdate.js";
 
 const commentsRouter = Router({ mergeParams: true });
 
@@ -16,6 +17,10 @@ commentsRouter
 
 commentsRouter
 	.route("/:commentId")
+	.put(
+		validateCommentUpdate,
+		commentsController.updateComment
+	)
 	.delete(
 		validateCommentDeletion,
 		commentsController.deleteComment

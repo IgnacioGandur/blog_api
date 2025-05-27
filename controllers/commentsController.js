@@ -27,6 +27,18 @@ const commentsController = {
 			message: "Your comment was deleted successfully!",
 			comment: comment,
 		})
+	},
+
+	updateComment: async (req, res) => {
+		const { commentId } = req.params;
+		const { content } = req.body;
+		const comment = await commentModel.updateComment(commentId, content);
+
+		res.json({
+			success: true,
+			message: "Comment updated successfully!",
+			comment: comment,
+		})
 	}
 };
 

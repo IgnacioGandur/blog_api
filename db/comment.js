@@ -78,6 +78,24 @@ class Comment {
 			throw new Error("Something went wrong when trying to get a comment by it's id.");
 		}
 	}
+
+	async updateComment(commentId, content) {
+		try {
+			const comment = await this.prisma.comment.update({
+				where: {
+					id: Number(commentId)
+				},
+				data: {
+					content
+				}
+			})
+
+			return comment;
+		} catch (error) {
+			console.error("Prisma error:", error);
+			throw new Error("Something went wrong when trying to update a comment.");
+		}
+	}
 }
 
 export default new Comment(prisma);
