@@ -77,4 +77,5 @@ model LikeComment {
   userId    Int
 
   @@id([commentId, userId])
+  @@unique([commentId, userId])
 }

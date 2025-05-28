@@ -8757,7 +8757,7 @@ export namespace Prisma {
     userId?: IntFilter<"LikeComment"> | number
     comment?: XOR<CommentScalarRelationFilter, CommentWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "commentId_userId">
+  }, "commentId_userId" | "commentId_userId">
 
   export type LikeCommentOrderByWithAggregationInput = {
     commentId?: SortOrder

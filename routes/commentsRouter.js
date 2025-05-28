@@ -4,6 +4,8 @@ import validateComment from "../middleware/validators/validateComment.js";
 import checkIfUserIsLogged from "../middleware/checkIfUserIsLogged.js";
 import validateCommentDeletion from "../middleware/validators/validateCommentDeletion.js";
 import validateCommentUpdate from "../middleware/validators/validateCommentUpdate.js";
+import validateLikeToComment from "../middleware/validators/validateLikeToComment.js";
+import validateLikeToCommentDeletion from "../middleware/validators/validateLikeToCommentDeletion.js";
 
 const commentsRouter = Router({ mergeParams: true });
 
@@ -24,6 +26,19 @@ commentsRouter
 	.delete(
 		validateCommentDeletion,
 		commentsController.deleteComment
+	);
+
+commentsRouter
+	.route("/:commentId/likes")
+	.post(
+		checkIfUserIsLogged,
+		validateLikeToComment,
+		commentsController.likeComment
 	)
+	.delete(
+		checkIfUserIsLogged,
+		validateLikeToCommentDeletion,
+		commentsController.deleteLike
+	);
 
 export default commentsRouter;

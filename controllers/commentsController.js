@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import commentModel from "../db/comment.js";
+import likeCommentModel from "../db/likeComment.js";
 
 const commentsController = {
 	createComment: async (req, res) => {
@@ -38,6 +39,33 @@ const commentsController = {
 			success: true,
 			message: "Comment updated successfully!",
 			comment: comment,
+		})
+	},
+
+	likeComment: async (req, res) => {
+		const { commentId } = req.params;
+		const { jwt: token } = req.cookies;
+		const user = jwt.decode(token);
+		const { id: userId } = user;
+		const like = await likeCommentModel.likeComment(commentId, userId);
+		res.json({
+			success: true,
+			message: "Comment liked successfully!",
+			like: like,
+		})
+	},
+
+	deleteLike: async (req, res) => {
+		const { jwt: token } = req.cookies;
+		const { commentId } = req.params;
+		const user = jwt.decode(token);
+		const { id: userId } = user;
+		const like = await likeCommentModel.deleteLike(commentId, userId);
+
+		res.json({
+			success: true,
+			message: "Like removed successfully from comment!",
+			like: like,
 		})
 	}
 };
