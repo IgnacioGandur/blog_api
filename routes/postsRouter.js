@@ -6,6 +6,7 @@ import validatePartialPostUpdate from "../middleware/validators/validatePartialP
 import validatePostDeletion from "../middleware/validators/validatePostDeletion.js";
 import validateIfPostExists from "../middleware/validators/validateIfPostExists.js";
 import commentsRouter from "./commentsRouter.js";
+import postLikesRouter from "./postLikesRouter.js";
 
 const postsRouter = Router({ mergeParams: true });
 
@@ -37,5 +38,8 @@ postsRouter
 
 postsRouter
 	.use("/:postId/comments", commentsRouter);
+
+postsRouter
+	.use("/:postId/likes", postLikesRouter);
 
 export default postsRouter;
