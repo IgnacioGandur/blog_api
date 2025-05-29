@@ -19,7 +19,7 @@ const validationChain = [
 			const postExists = await postModel.checkIfPostExistsById(postId);
 
 			if (!postExists) {
-				throw new Error("The post with an id of: '${postId}' doesn't exists.");
+				throw new Error(`The post with an id of: '${postId}' doesn't exists.`);
 			}
 
 			return true;

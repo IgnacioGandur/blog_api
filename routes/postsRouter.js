@@ -7,6 +7,7 @@ import validatePostDeletion from "../middleware/validators/validatePostDeletion.
 import validateIfPostExists from "../middleware/validators/validateIfPostExists.js";
 import commentsRouter from "./commentsRouter.js";
 import postLikesRouter from "./postLikesRouter.js";
+import checkIfUserIsLogged from "../middleware/checkIfUserIsLogged.js";
 
 const postsRouter = Router({ mergeParams: true });
 
@@ -14,6 +15,7 @@ postsRouter
 	.route("/")
 	.get(postsController.getAllPosts)
 	.post(
+		checkIfUserIsLogged,
 		checkIfUserIsAuthor,
 		validatePostCreation,
 		postsController.createPost

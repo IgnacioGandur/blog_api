@@ -4,6 +4,7 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// TODO: add on cascade delete to multiple models.
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -37,7 +38,7 @@ model Post {
   createdAt        DateTime   @default(now())
   updatedAt        DateTime   @updatedAt
   categories       Category[]
-  user             User       @relation(fields: [userId], references: [id])
+  user             User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId           Int
   comments         Comment[]
   likes            LikePost[]
@@ -53,17 +54,17 @@ model Category {
 model Comment {
   id      Int           @id @default(autoincrement())
   content String
-  user    User          @relation(fields: [userId], references: [id])
+  user    User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId  Int
-  post    Post          @relation(fields: [postId], references: [id])
+  post    Post          @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId  Int
   likes   LikeComment[]
 }
 
 model LikePost {
-  post   Post @relation(fields: [postId], references: [id])
+  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId Int
-  user   User @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int
 
   @@id([postId, userId])
@@ -71,9 +72,9 @@ model LikePost {
 }
 
 model LikeComment {
-  comment   Comment @relation(fields: [commentId], references: [id])
+  comment   Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
   commentId Int
-  user      User    @relation(fields: [userId], references: [id])
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
 
   @@id([commentId, userId])

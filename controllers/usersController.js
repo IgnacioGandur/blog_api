@@ -19,7 +19,20 @@ const usersController = {
 			message: "User deleted successfully!",
 			user: deletedUser,
 		});
-	}
+	},
+
+	getUser: async (req, res) => {
+		const { jwt: token } = req.cookies;
+		const userToken = jwt.decode(token);
+		const { id: userId } = userToken;
+		const user = await userModel.getUserById(userId, true);
+
+		res.json({
+			success: true,
+			message: "User retrieved successfully!",
+			user: user,
+		})
+	},
 }
 
 export default usersController;
