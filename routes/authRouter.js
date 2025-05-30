@@ -1,5 +1,4 @@
 import authController from "../controllers/authController.js";
-import usersRouter from "./usersRouter.js";
 
 // Packages
 import { Router } from "express";
@@ -14,8 +13,27 @@ import checkIfUserIsLogged from "../middleware/checkIfUserIsLogged.js";
 
 const authRouter = Router();
 
-authRouter.route("/register").post(redirectLoggedUser, validateUserRegister, authController.registerPost);
-authRouter.route("/login").post(redirectLoggedUser, validateUserLogin, authController.loginPost);
-authRouter.route("/logout").all(checkIfUserIsLogged, authController.logout);
+authRouter
+	.route("/register")
+	.post(
+		redirectLoggedUser,
+		validateUserRegister,
+		authController.registerPost
+	);
+
+authRouter
+	.route("/login")
+	.post(
+		redirectLoggedUser,
+		validateUserLogin,
+		authController.loginPost
+	);
+
+authRouter
+	.route("/logout")
+	.all(
+		checkIfUserIsLogged,
+		authController.logout
+	);
 
 export default authRouter;

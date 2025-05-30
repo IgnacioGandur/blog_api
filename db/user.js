@@ -129,6 +129,24 @@ class User {
 			throw new Error("Something went wrong when trying to delete the user.");
 		}
 	}
+
+	async updateAuthorStatus(userId, isAuthor) {
+		try {
+			const user = await this.prisma.user.update({
+				where: {
+					id: Number(userId)
+				},
+				data: {
+					isAuthor,
+				}
+			})
+
+			return user;
+		} catch (error) {
+			console.error("Prisma error:", error);
+			throw new Error("Something went wrong when trying to update a user's author status.");
+		}
+	}
 }
 
 export default new User(prisma);

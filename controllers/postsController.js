@@ -13,7 +13,7 @@ const postsController = {
 		})
 	},
 
-	getAllPosts: async (req, res) => {
+	getAllPosts: async (_req, res) => {
 		const posts = await postModel.getAllPosts();
 
 		res.json({

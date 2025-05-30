@@ -1,7 +1,8 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { body, validationResult } from "express-validator";
+import { body } from "express-validator";
 import userModel from "../../db/user.js";
+import validationMiddleware from "./validationMiddleware.js";
 
 const validationChain = [
 	body("password")
@@ -23,21 +24,6 @@ const validationChain = [
 		})
 ];
 
-const validateUserDeletion = [
-	validationChain,
-	(req, res, next) => {
-		const validationErrors = validationResult(req);
-
-		if (!validationErrors.isEmpty()) {
-			return res.status(422).json({
-				success: false,
-				message: "There's something wrong with the following input fields, please correct them:",
-				errors: validationErrors.array(),
-			})
-		} else {
-			next();
-		}
-	}
-];
+const validateUserDeletion = validationMiddleware(validationChain);
 
 export default validateUserDeletion;

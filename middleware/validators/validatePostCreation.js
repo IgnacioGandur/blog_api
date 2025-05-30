@@ -28,6 +28,9 @@ const validationChain = [
 		.trim()
 		.notEmpty()
 		.withMessage("The post short description can't be empty."),
+	body("categories")
+		.isArray({ min: 1 })
+		.withMessage("You must select at least one category for the post."),
 	body("categories.*.id")
 		.trim()
 		.notEmpty()

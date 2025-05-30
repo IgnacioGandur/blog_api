@@ -33,6 +33,25 @@ const usersController = {
 			user: user,
 		})
 	},
+
+	partialUserUpdate: async (req, res) => {
+		const { isAuthor } = req.body;
+		const { jwt: token } = req.cookies;
+		const decodedToken = jwt.decode(token);
+		const { id: userId } = decodedToken;
+
+		let user;
+
+		if (isAuthor !== undefined) {
+			user = await userModel.updateAuthorStatus(userId, isAuthor);
+		}
+
+		res.json({
+			success: true,
+			message: "Partial user update performed correctly!",
+			user: user,
+		})
+	}
 }
 
 export default usersController;

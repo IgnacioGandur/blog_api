@@ -1,10 +1,44 @@
-import { body } from "express-validator";
+import { body, param } from "express-validator";
+import postModel from "../../db/post.js";
 import categoriesModel from "../../db/category.js";
 import validationMiddleware from "./validationMiddleware.js";
 
 const imageExtensionsRegex = /\.(jpg|jpeg|png|gif|bmp|webp)$/i;
 
 const validationChain = [
+
+	param("postId")
+		.trim()
+		.notEmpty()
+		.withMessage("The post id in the param can't be empty.")
+		.bail()
+		.isInt()
+		.withMessage("The post id in the param should be an integer.")
+		.bail()
+		.custom(async (postId) => {
+			const postExists = await postModel.checkIfPostExistsById(postId);
+
+			if (!postExists) {
+				throw new Error(`The post with an id of: '${postId}' doesn't exists.`);
+			}
+
+			return true;
+		})
+		.bail()
+		.custom(async (postId, { req }) => {
+			const post = await postModel.getPostById(postId);
+			const { jwt: token } = req.cookies;
+			const user = jwt.decode(token);
+			const { id: userId } = user;
+
+			if (post.userId !== userId) {
+				throw new Error("Only the author of the post can perform updates to the post.");
+			}
+
+			return true;
+		})
+
+	,
 	body("title")
 		.trim()
 		.notEmpty()
@@ -36,6 +70,10 @@ const validationChain = [
 		.isBoolean()
 		.withMessage("The is published field must be a boolean value.")
 		.optional({ values: "falsy" }),
+	body("categories")
+		.isArray({ min: 1 })
+		.withMessage("You must select at least one category for the post.")
+	,
 	body("categories.*.id")
 		.trim()
 		.notEmpty()

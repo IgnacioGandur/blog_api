@@ -1,5 +1,6 @@
 import { body, validationResult } from "express-validator";
 import userModel from "../../db/user.js";
+import validationMiddleware from "./validationMiddleware.js";
 
 const regex = /^[\w\d\-]{1,30}$/g
 
@@ -53,21 +54,6 @@ const validationChain = [
 		})
 ];
 
-const validateUserRegister = [
-	validationChain,
-	(req, res, next) => {
-		const validationErrors = validationResult(req);
-
-		if (!validationErrors.isEmpty()) {
-			return res.status(422).json({
-				success: false,
-				message: "There are some errors with the following inputs, please correct them:",
-				errors: validationErrors.array(),
-			})
-		} else {
-			return next();
-		}
-	}
-]
+const validateUserRegister = validationMiddleware(validationChain);
 
 export default validateUserRegister;

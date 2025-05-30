@@ -1,5 +1,7 @@
 import { Router } from "express";
 import categoriesController from "../controllers/categoriesController.js";
+
+// Validators
 import validateCategoryCreation from "../middleware/validators/validateCategoryCreation.js";
 import validateCategoryDeletion from "../middleware/validators/validateCategoryDeletion.js";
 import checkIfUserIsAuthor from "../middleware/checkIfUserIsAuthor.js";

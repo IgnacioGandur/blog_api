@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import userModel from "../../db/user.js";
 import { body, validationResult } from "express-validator";
+import validationMiddleware from "./validationMiddleware.js";
 
 const validationChain = [
 	body("username")
@@ -41,21 +42,6 @@ const validationChain = [
 		})
 ];
 
-const validateUserLogin = [
-	validationChain,
-	(req, res, next) => {
-		const errors = validationResult(req);
-
-		if (!errors.isEmpty()) {
-			return res.status(422).json({
-				success: false,
-				message: "There's something wrong with the following fields, please correct them:",
-				errors: errors.array(),
-			})
-		}
-
-		next();
-	},
-];
+const validateUserLogin = validationMiddleware(validationChain);
 
 export default validateUserLogin;
