@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
-import userModel from "../../db/user.js";
-import { body, validationResult } from "express-validator";
-import validationMiddleware from "./validationMiddleware.js";
+import { body } from "express-validator";
+import userModel from "../../../db/user.js";
+import validationMiddleware from "../validationMiddleware.js";
 
 const validationChain = [
 	body("username")

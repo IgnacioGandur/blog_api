@@ -1,8 +1,8 @@
-import { param } from "express-validator";
-import validationMiddleware from "./validationMiddleware.js";
-import postModel from "../../db/post.js";
-import likePostModel from "../../db/likePost.js";
 import jwt from "jsonwebtoken";
+import { param } from "express-validator";
+import validationMiddleware from "../validationMiddleware.js";
+import postModel from "../../../db/post.js";
+import likePostModel from "../../../db/likePost.js";
 
 const validationChain = [
 	param("postId")

@@ -1,6 +1,6 @@
 import { body } from "express-validator";
-import validationMiddleware from "./validationMiddleware.js";
-import categoryModel from "../../db/category.js";
+import validationMiddleware from "../validationMiddleware.js";
+import categoryModel from "../../../db/category.js";
 
 const imageExtensionsRegex = /\.(jpg|jpeg|png|gif|bmp|webp)$/i;
 

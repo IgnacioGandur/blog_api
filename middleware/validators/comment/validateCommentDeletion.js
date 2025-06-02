@@ -1,7 +1,7 @@
-import { body, param } from "express-validator";
-import validationMiddleware from "./validationMiddleware.js";
-import commentModel from "../../db/comment.js";
 import jwt from "jsonwebtoken";
+import { param } from "express-validator";
+import validationMiddleware from "../validationMiddleware.js";
+import commentModel from "../../../db/comment.js";
 
 const validationChain = [
 	param("commentId")
@@ -27,14 +27,14 @@ const validationChain = [
 			const user = jwt.decode(token);
 			const comment = await commentModel.getCommentById(commentId);
 
-			if (comment.userId !== user.id) {
-				throw new Error("You are not the owner of the comment you are trying to update.")
+			if (Number(comment.userId) !== Number(user.id)) {
+				throw new Error("You are not the owner of the comment you are trying to delete.");
 			}
 
 			return true;
 		})
 ];
 
-const validateCommentUpdate = validationMiddleware(validationChain);
+const validateCommentDeletion = validationMiddleware(validationChain);
 
-export default validateCommentUpdate;
+export default validateCommentDeletion;

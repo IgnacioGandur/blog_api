@@ -4,8 +4,8 @@ import authController from "../controllers/authController.js";
 import { Router } from "express";
 
 // Validators
-import validateUserRegister from "../middleware/validators/validateUserRegister.js";
-import validateUserLogin from "../middleware/validators/validateUserLogin.js";
+import validateUserRegister from "../middleware/validators/user/validateUserRegister.js";
+import validateUserLogin from "../middleware/validators/user/validateUserLogin.js";
 
 // Middleware
 import redirectLoggedUser from "../middleware/redirectLoggedUsers.js";

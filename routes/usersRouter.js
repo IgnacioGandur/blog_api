@@ -3,8 +3,8 @@ import usersController from "../controllers/usersController.js";
 
 // Validators
 import checkIfUserIsLogged from "../middleware/checkIfUserIsLogged.js";
-import validateUserDeletion from "../middleware/validators/validateUserDeletion.js";
-import validateUserAuthorUpdate from "../middleware/validators/validateUserAuthorUpdate.js"
+import validateUserDeletion from "../middleware/validators/user/validateUserDeletion.js";
+import validateUserAuthorUpdate from "../middleware/validators/user/validateUserAuthorUpdate.js"
 
 const usersRouter = Router();
 

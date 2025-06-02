@@ -1,5 +1,5 @@
 import { body, validationResult } from "express-validator";
-import categoryModel from "../../db/category.js";
+import categoryModel from "../../../db/category.js";
 
 const regex = /^[\w\d\ ]{1,30}$/g;
 

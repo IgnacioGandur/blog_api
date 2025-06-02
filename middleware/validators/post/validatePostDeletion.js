@@ -1,8 +1,7 @@
 import jwt from "jsonwebtoken";
 import { param } from "express-validator";
-import validationMiddleware from "./validationMiddleware.js";
-import postModel from "../../db/post.js";
-import likePostModel from "../../db/likePost.js";
+import validationMiddleware from "../validationMiddleware.js";
+import postModel from "../../../db/post.js";
 
 const validationChain = [
 	param("postId")
@@ -17,26 +16,26 @@ const validationChain = [
 			const postExists = await postModel.checkIfPostExistsById(postId);
 
 			if (!postExists) {
-				throw new Error(`The post with an id of: '${postId}' doesn't exists.`);
+				throw new Error(`The post with an id of: '${postId}' doesn't exist.`);
 			}
 
 			return true;
 		})
 		.bail()
 		.custom(async (postId, { req }) => {
+			const post = await postModel.getPostById(postId);
 			const { jwt: token } = req.cookies;
 			const user = jwt.decode(token);
 			const { id: userId } = user;
-			const likeExists = await likePostModel.checkIfLikeExists(postId, userId);
 
-			if (!likeExists) {
-				throw new Error("The like you are trying to remove from this post doesn't exist.");
+			if (post.userId !== userId) {
+				throw new Error("Only the author of the post can delete the post.");
 			}
 
 			return true;
 		})
 ];
 
-const validateLikeToPostDeletion = validationMiddleware(validationChain);
+const validatePostDeletion = validationMiddleware(validationChain);
 
-export default validateLikeToPostDeletion;
+export default validatePostDeletion;

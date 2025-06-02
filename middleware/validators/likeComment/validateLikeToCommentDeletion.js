@@ -1,7 +1,8 @@
-import { param } from "express-validator";
-import validationMiddleware from "./validationMiddleware.js";
-import commentModel from "../../db/comment.js";
 import jwt from "jsonwebtoken";
+import { param } from "express-validator";
+import validationMiddleware from "../validationMiddleware.js";
+import commentModel from "../../../db/comment.js";
+import likeCommentModel from "../../../db/likeComment.js";
 
 const validationChain = [
 	param("commentId")
@@ -25,16 +26,17 @@ const validationChain = [
 		.custom(async (commentId, { req }) => {
 			const { jwt: token } = req.cookies;
 			const user = jwt.decode(token);
-			const comment = await commentModel.getCommentById(commentId);
+			const { id: userId } = user;
+			const likeExists = await likeCommentModel.checkIfLikeExists(commentId, userId);
 
-			if (Number(comment.userId) !== Number(user.id)) {
-				throw new Error("You are not the owner of the comment you are trying to delete.");
+			if (!likeExists) {
+				throw new Error("The like you are trying to remove doesn't exists.");
 			}
 
 			return true;
 		})
 ];
 
-const validateCommentDeletion = validationMiddleware(validationChain);
+const validateLikeToCommentDeletion = validationMiddleware(validationChain);
 
-export default validateCommentDeletion;
+export default validateLikeToCommentDeletion;

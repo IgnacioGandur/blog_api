@@ -1,8 +1,7 @@
 import jwt from "jsonwebtoken";
-import { param } from "express-validator";
-import validationMiddleware from "./validationMiddleware.js";
-import commentModel from "../../db/comment.js";
-import likeCommentModel from "../../db/likeComment.js";
+import { body, param } from "express-validator";
+import validationMiddleware from "../validationMiddleware.js";
+import commentModel from "../../../db/comment.js";
 
 const validationChain = [
 	param("commentId")
@@ -26,18 +25,16 @@ const validationChain = [
 		.custom(async (commentId, { req }) => {
 			const { jwt: token } = req.cookies;
 			const user = jwt.decode(token);
-			const { id: userId } = user;
+			const comment = await commentModel.getCommentById(commentId);
 
-			const likeExists = await likeCommentModel.checkIfLikeExists(commentId, userId);
-
-			if (likeExists) {
-				throw new Error("You already liked that comment.");
+			if (comment.userId !== user.id) {
+				throw new Error("You are not the owner of the comment you are trying to update.")
 			}
 
 			return true;
 		})
 ];
 
-const validateLikeToComment = validationMiddleware(validationChain);
+const validateCommentUpdate = validationMiddleware(validationChain);
 
-export default validateLikeToComment;
+export default validateCommentUpdate;

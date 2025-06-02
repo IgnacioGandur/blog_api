@@ -1,8 +1,12 @@
-import { param } from "express-validator";
-import postModel from "../../db/post.js";
-import validationMiddleware from "./validationMiddleware.js";
+import { body, param } from "express-validator";
+import validationMiddleware from "../validationMiddleware.js";
+import postModel from "../../../db/post.js";
 
 const validationChain = [
+	body("content")
+		.trim()
+		.notEmpty()
+		.withMessage("The comment can't be empty."),
 	param("postId")
 		.trim()
 		.notEmpty()
@@ -20,8 +24,8 @@ const validationChain = [
 
 			return true;
 		})
-]
+];
 
-const validateIfPostExists = validationMiddleware(validationChain);
+const validateComment = validationMiddleware(validationChain);
 
-export default validateIfPostExists;
+export default validateComment;

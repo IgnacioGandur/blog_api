@@ -2,8 +2,8 @@ import { Router } from "express";
 import categoriesController from "../controllers/categoriesController.js";
 
 // Validators
-import validateCategoryCreation from "../middleware/validators/validateCategoryCreation.js";
-import validateCategoryDeletion from "../middleware/validators/validateCategoryDeletion.js";
+import validateCategoryCreation from "../middleware/validators/category/validateCategoryCreation.js";
+import validateCategoryDeletion from "../middleware/validators/category/validateCategoryDeletion.js";
 import checkIfUserIsAuthor from "../middleware/checkIfUserIsAuthor.js";
 
 const categoriesRouter = Router();
@@ -27,6 +27,7 @@ categoriesRouter
 		categoriesController.updateCategory
 	)
 	.delete(
+		checkIfUserIsAuthor,
 		validateCategoryDeletion,
 		categoriesController.deleteCategory
 	);

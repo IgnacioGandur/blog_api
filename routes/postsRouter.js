@@ -1,5 +1,6 @@
 import { Router } from "express";
 import postsController from "../controllers/postsController.js";
+import checkIfUserIsLogged from "../middleware/checkIfUserIsLogged.js";
 
 // Routers
 import commentsRouter from "./commentsRouter.js";
@@ -7,11 +8,10 @@ import postLikesRouter from "./postLikesRouter.js";
 
 // Validators
 import checkIfUserIsAuthor from "../middleware/checkIfUserIsAuthor.js";
-import validatePostCreation from "../middleware/validators/validatePostCreation.js";
-import validatePartialPostUpdate from "../middleware/validators/validatePartialPostUpdate.js";
-import validatePostDeletion from "../middleware/validators/validatePostDeletion.js";
-import validateIfPostExists from "../middleware/validators/validateIfPostExists.js";
-import checkIfUserIsLogged from "../middleware/checkIfUserIsLogged.js";
+import validatePostCreation from "../middleware/validators/post/validatePostCreation.js";
+import validatePartialPostUpdate from "../middleware/validators/post/validatePartialPostUpdate.js";
+import validatePostDeletion from "../middleware/validators/post/validatePostDeletion.js";
+import validateIfPostExists from "../middleware/validators/post/validateIfPostExists.js";
 
 const postsRouter = Router({ mergeParams: true });
 

@@ -1,6 +1,6 @@
-import { body, validationResult } from "express-validator";
-import userModel from "../../db/user.js";
-import validationMiddleware from "./validationMiddleware.js";
+import { body } from "express-validator";
+import userModel from "../../../db/user.js";
+import validationMiddleware from "../validationMiddleware.js";
 
 const regex = /^[\w\d\-]{1,30}$/g
 

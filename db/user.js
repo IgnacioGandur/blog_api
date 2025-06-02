@@ -137,7 +137,7 @@ class User {
 					id: Number(userId)
 				},
 				data: {
-					isAuthor,
+					isAuthor: Boolean(isAuthor),
 				}
 			})
 

@@ -1,6 +1,6 @@
 import { param } from "express-validator";
-import validationMiddleware from "./validationMiddleware.js";
-import categoryModel from "../../db/category.js";
+import validationMiddleware from "../validationMiddleware.js";
+import categoryModel from "../../../db/category.js";
 
 const validationChain = [
 	param("categoryId")

@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { body } from "express-validator";
-import userModel from "../../db/user.js";
-import validationMiddleware from "./validationMiddleware.js";
+import userModel from "../../../db/user.js";
+import validationMiddleware from "../validationMiddleware.js";
 
 const validationChain = [
 	body("password")

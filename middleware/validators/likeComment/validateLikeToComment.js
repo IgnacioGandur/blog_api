@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 import { param } from "express-validator";
-import validationMiddleware from "./validationMiddleware.js";
-import commentModel from "../../db/comment.js";
-import likeCommentModel from "../../db/likeComment.js";
+import validationMiddleware from "../validationMiddleware.js";
+import commentModel from "../../../db/comment.js";
+import likeCommentModel from "../../../db/likeComment.js";
 
 const validationChain = [
 	param("commentId")
@@ -27,16 +27,17 @@ const validationChain = [
 			const { jwt: token } = req.cookies;
 			const user = jwt.decode(token);
 			const { id: userId } = user;
+
 			const likeExists = await likeCommentModel.checkIfLikeExists(commentId, userId);
 
-			if (!likeExists) {
-				throw new Error("The like you are trying to remove doesn't exists.");
+			if (likeExists) {
+				throw new Error("You already liked that comment.");
 			}
 
 			return true;
 		})
 ];
 
-const validateLikeToCommentDeletion = validationMiddleware(validationChain);
+const validateLikeToComment = validationMiddleware(validationChain);
 
-export default validateLikeToCommentDeletion;
+export default validateLikeToComment;

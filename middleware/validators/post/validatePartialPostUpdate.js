@@ -1,7 +1,8 @@
+import jwt from "jsonwebtoken";
 import { body, param } from "express-validator";
-import postModel from "../../db/post.js";
-import categoriesModel from "../../db/category.js";
-import validationMiddleware from "./validationMiddleware.js";
+import postModel from "../../../db/post.js";
+import categoriesModel from "../../../db/category.js";
+import validationMiddleware from "../validationMiddleware.js";
 
 const imageExtensionsRegex = /\.(jpg|jpeg|png|gif|bmp|webp)$/i;
 
@@ -70,10 +71,6 @@ const validationChain = [
 		.isBoolean()
 		.withMessage("The is published field must be a boolean value.")
 		.optional({ values: "falsy" }),
-	body("categories")
-		.isArray({ min: 1 })
-		.withMessage("You must select at least one category for the post.")
-	,
 	body("categories.*.id")
 		.trim()
 		.notEmpty()
