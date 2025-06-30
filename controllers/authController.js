@@ -5,7 +5,8 @@ import jwt from "jsonwebtoken";
 const cookieOptions = {
 	maxAge: 1000 * 60 * 60 * 24 * 30,
 	httpOnly: true,
-	sameSite: false,
+	secure: true,
+	sameSite: 'none',
 }
 
 const authController = {

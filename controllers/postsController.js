@@ -13,8 +13,20 @@ const postsController = {
 		})
 	},
 
-	getAllPosts: async (_req, res) => {
+	getAllPosts: async (req, res) => {
 		const posts = await postModel.getAllPosts();
+		const { categories } = req.query;
+
+		console.log("the content of categories is:", req.query);
+
+		if (categories) {
+			const posts = await postModel.getPostsByCategories(categories);
+			return res.json({
+				success: true,
+				message: "Posts filtered by categories retrieved sucessfully!",
+				posts: posts,
+			})
+		}
 
 		res.json({
 			success: true,

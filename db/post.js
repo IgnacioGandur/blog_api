@@ -7,7 +7,15 @@ class Post {
 
 	async getAllPosts() {
 		try {
-			const posts = await this.prisma.post.findMany();
+			const posts = await this.prisma.post.findMany({
+				where: {
+					isPublished: true,
+				},
+				include: {
+					categories: true,
+					likes: true
+				}
+			});
 			return posts;
 		} catch (error) {
 			console.error("Prisma error:", error);
@@ -23,6 +31,8 @@ class Post {
 				},
 				include: {
 					categories: true,
+					likes: true,
+					comments: true
 				}
 			})
 
@@ -145,6 +155,33 @@ class Post {
 		} catch (error) {
 			console.error("Prisma error:", error);
 			throw new Error("Something went wrong when trying to delete a post by it's id.");
+		}
+	}
+
+	async getPostsByCategories(categories) {
+		try {
+			const posts = await this.prisma.post.findMany({
+				where: {
+					categories: {
+						some: {
+							name: {
+								in: Array.isArray(categories) ? categories : [categories],
+							}
+						}
+					}
+				},
+				include: {
+					categories: true,
+					likes: true
+				}
+			})
+
+			console.log("the content of posts is:", posts);
+
+			return posts;
+		} catch (error) {
+			console.error("Prisma error:", error);
+			throw new Error("Something went wrong when trying to filter posts by it's categories.");
 		}
 	}
 }
