@@ -5,7 +5,7 @@ class User {
 		this.prisma = prisma;
 	}
 
-	async registerUser(firstName, lastName, username, password) {
+	async registerUser(firstName, lastName, username, profilePictureUrl, password) {
 		try {
 			const user = await this.prisma.user.create({
 				omit: {
@@ -15,6 +15,7 @@ class User {
 					firstName,
 					lastName,
 					username,
+					profilePictureUrl,
 					password
 				}
 			})

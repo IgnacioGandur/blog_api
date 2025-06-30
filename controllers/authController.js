@@ -13,7 +13,8 @@ const authController = {
 	registerPost: async (req, res) => {
 		const { firstName, lastName, username, password } = req.body;
 		const hashedPassword = await bcrypt.hash(password, Number(process.env.BCRYPT_SALT));
-		const user = await userModel.registerUser(firstName, lastName, username, hashedPassword);
+		const profilePictureUrl = `https://ui-avatars.com/api/name=${firstName}+${lastName}=&background=random`;
+		const user = await userModel.registerUser(firstName, lastName, username, profilePictureUrl, hashedPassword);
 
 		res.json({
 			success: true,

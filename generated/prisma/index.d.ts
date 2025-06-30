@@ -1517,6 +1517,7 @@ export namespace Prisma {
     firstName: string | null
     lastName: string | null
     username: string | null
+    profilePictureUrl: string | null
     password: string | null
     isAuthor: boolean | null
   }
@@ -1526,6 +1527,7 @@ export namespace Prisma {
     firstName: string | null
     lastName: string | null
     username: string | null
+    profilePictureUrl: string | null
     password: string | null
     isAuthor: boolean | null
   }
@@ -1535,6 +1537,7 @@ export namespace Prisma {
     firstName: number
     lastName: number
     username: number
+    profilePictureUrl: number
     password: number
     isAuthor: number
     _all: number
@@ -1554,6 +1557,7 @@ export namespace Prisma {
     firstName?: true
     lastName?: true
     username?: true
+    profilePictureUrl?: true
     password?: true
     isAuthor?: true
   }
@@ -1563,6 +1567,7 @@ export namespace Prisma {
     firstName?: true
     lastName?: true
     username?: true
+    profilePictureUrl?: true
     password?: true
     isAuthor?: true
   }
@@ -1572,6 +1577,7 @@ export namespace Prisma {
     firstName?: true
     lastName?: true
     username?: true
+    profilePictureUrl?: true
     password?: true
     isAuthor?: true
     _all?: true
@@ -1668,6 +1674,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl: string
     password: string
     isAuthor: boolean
     _count: UserCountAggregateOutputType | null
@@ -1696,6 +1703,7 @@ export namespace Prisma {
     firstName?: boolean
     lastName?: boolean
     username?: boolean
+    profilePictureUrl?: boolean
     password?: boolean
     isAuthor?: boolean
     posts?: boolean | User$postsArgs<ExtArgs>
@@ -1710,6 +1718,7 @@ export namespace Prisma {
     firstName?: boolean
     lastName?: boolean
     username?: boolean
+    profilePictureUrl?: boolean
     password?: boolean
     isAuthor?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1719,6 +1728,7 @@ export namespace Prisma {
     firstName?: boolean
     lastName?: boolean
     username?: boolean
+    profilePictureUrl?: boolean
     password?: boolean
     isAuthor?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1728,11 +1738,12 @@ export namespace Prisma {
     firstName?: boolean
     lastName?: boolean
     username?: boolean
+    profilePictureUrl?: boolean
     password?: boolean
     isAuthor?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "username" | "password" | "isAuthor", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "username" | "profilePictureUrl" | "password" | "isAuthor", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | User$postsArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
@@ -1756,6 +1767,7 @@ export namespace Prisma {
       firstName: string
       lastName: string
       username: string
+      profilePictureUrl: string
       password: string
       isAuthor: boolean
     }, ExtArgs["result"]["user"]>
@@ -2189,6 +2201,7 @@ export namespace Prisma {
     readonly firstName: FieldRef<"User", 'String'>
     readonly lastName: FieldRef<"User", 'String'>
     readonly username: FieldRef<"User", 'String'>
+    readonly profilePictureUrl: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly isAuthor: FieldRef<"User", 'Boolean'>
   }
@@ -8279,6 +8292,7 @@ export namespace Prisma {
     firstName: 'firstName',
     lastName: 'lastName',
     username: 'username',
+    profilePictureUrl: 'profilePictureUrl',
     password: 'password',
     isAuthor: 'isAuthor'
   };
@@ -8431,6 +8445,7 @@ export namespace Prisma {
     firstName?: StringFilter<"User"> | string
     lastName?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
+    profilePictureUrl?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     isAuthor?: BoolFilter<"User"> | boolean
     posts?: PostListRelationFilter
@@ -8444,6 +8459,7 @@ export namespace Prisma {
     firstName?: SortOrder
     lastName?: SortOrder
     username?: SortOrder
+    profilePictureUrl?: SortOrder
     password?: SortOrder
     isAuthor?: SortOrder
     posts?: PostOrderByRelationAggregateInput
@@ -8460,6 +8476,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     firstName?: StringFilter<"User"> | string
     lastName?: StringFilter<"User"> | string
+    profilePictureUrl?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     isAuthor?: BoolFilter<"User"> | boolean
     posts?: PostListRelationFilter
@@ -8473,6 +8490,7 @@ export namespace Prisma {
     firstName?: SortOrder
     lastName?: SortOrder
     username?: SortOrder
+    profilePictureUrl?: SortOrder
     password?: SortOrder
     isAuthor?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -8490,6 +8508,7 @@ export namespace Prisma {
     firstName?: StringWithAggregatesFilter<"User"> | string
     lastName?: StringWithAggregatesFilter<"User"> | string
     username?: StringWithAggregatesFilter<"User"> | string
+    profilePictureUrl?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     isAuthor?: BoolWithAggregatesFilter<"User"> | boolean
   }
@@ -8781,6 +8800,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl?: string
     password: string
     isAuthor?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -8794,6 +8814,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl?: string
     password: string
     isAuthor?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -8806,6 +8827,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -8819,6 +8841,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -8832,6 +8855,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl?: string
     password: string
     isAuthor?: boolean
   }
@@ -8840,6 +8864,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -8849,6 +8874,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -9180,6 +9206,7 @@ export namespace Prisma {
     firstName?: SortOrder
     lastName?: SortOrder
     username?: SortOrder
+    profilePictureUrl?: SortOrder
     password?: SortOrder
     isAuthor?: SortOrder
   }
@@ -9193,6 +9220,7 @@ export namespace Prisma {
     firstName?: SortOrder
     lastName?: SortOrder
     username?: SortOrder
+    profilePictureUrl?: SortOrder
     password?: SortOrder
     isAuthor?: SortOrder
   }
@@ -9202,6 +9230,7 @@ export namespace Prisma {
     firstName?: SortOrder
     lastName?: SortOrder
     username?: SortOrder
+    profilePictureUrl?: SortOrder
     password?: SortOrder
     isAuthor?: SortOrder
   }
@@ -10283,6 +10312,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl?: string
     password: string
     isAuthor?: boolean
     comments?: CommentCreateNestedManyWithoutUserInput
@@ -10295,6 +10325,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl?: string
     password: string
     isAuthor?: boolean
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
@@ -10388,6 +10419,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
     comments?: CommentUpdateManyWithoutUserNestedInput
@@ -10400,6 +10432,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
@@ -10491,6 +10524,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl?: string
     password: string
     isAuthor?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -10503,6 +10537,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl?: string
     password: string
     isAuthor?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -10580,6 +10615,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -10592,6 +10628,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -10689,6 +10726,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl?: string
     password: string
     isAuthor?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -10701,6 +10739,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl?: string
     password: string
     isAuthor?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -10766,6 +10805,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -10778,6 +10818,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -10807,6 +10848,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl?: string
     password: string
     isAuthor?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -10819,6 +10861,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     username: string
+    profilePictureUrl?: string
     password: string
     isAuthor?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -10870,6 +10913,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -10882,6 +10926,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput

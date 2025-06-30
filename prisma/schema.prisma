@@ -16,16 +16,17 @@ datasource db {
 }
 
 model User {
-  id            Int           @id @default(autoincrement())
-  firstName     String        @db.VarChar(30)
-  lastName      String        @db.VarChar(30)
-  username      String        @unique @db.VarChar(50)
-  password      String
-  isAuthor      Boolean       @default(false)
-  posts         Post[]
-  comments      Comment[]
-  likedPosts    LikePost[]
-  likedComments LikeComment[]
+  id                Int           @id @default(autoincrement())
+  firstName         String        @db.VarChar(30)
+  lastName          String        @db.VarChar(30)
+  username          String        @unique @db.VarChar(50)
+  profilePictureUrl String        @default("https://ui-avatars.com/api/name=&background=random")
+  password          String
+  isAuthor          Boolean       @default(false)
+  posts             Post[]
+  comments          Comment[]
+  likedPosts        LikePost[]
+  likedComments     LikeComment[]
 }
 
 model Post {
