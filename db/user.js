@@ -50,6 +50,15 @@ class User {
 				},
 				where: {
 					id: Number(id),
+				},
+				include: {
+					_count: {
+						select: {
+							posts: true,
+							comments: true,
+							likedPosts: true,
+						}
+					}
 				}
 			})
 
