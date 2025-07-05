@@ -127,7 +127,8 @@ exports.Prisma.UserScalarFieldEnum = {
   username: 'username',
   profilePictureUrl: 'profilePictureUrl',
   password: 'password',
-  isAuthor: 'isAuthor'
+  isAuthor: 'isAuthor',
+  joinedOn: 'joinedOn'
 };
 
 exports.Prisma.PostScalarFieldEnum = {

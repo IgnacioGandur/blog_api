@@ -27,6 +27,7 @@ model User {
   comments          Comment[]
   likedPosts        LikePost[]
   likedComments     LikeComment[]
+  joinedOn          DateTime      @default(now())
 }
 
 model Post {

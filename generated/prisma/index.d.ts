@@ -1520,6 +1520,7 @@ export namespace Prisma {
     profilePictureUrl: string | null
     password: string | null
     isAuthor: boolean | null
+    joinedOn: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1530,6 +1531,7 @@ export namespace Prisma {
     profilePictureUrl: string | null
     password: string | null
     isAuthor: boolean | null
+    joinedOn: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1540,6 +1542,7 @@ export namespace Prisma {
     profilePictureUrl: number
     password: number
     isAuthor: number
+    joinedOn: number
     _all: number
   }
 
@@ -1560,6 +1563,7 @@ export namespace Prisma {
     profilePictureUrl?: true
     password?: true
     isAuthor?: true
+    joinedOn?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1570,6 +1574,7 @@ export namespace Prisma {
     profilePictureUrl?: true
     password?: true
     isAuthor?: true
+    joinedOn?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1580,6 +1585,7 @@ export namespace Prisma {
     profilePictureUrl?: true
     password?: true
     isAuthor?: true
+    joinedOn?: true
     _all?: true
   }
 
@@ -1677,6 +1683,7 @@ export namespace Prisma {
     profilePictureUrl: string
     password: string
     isAuthor: boolean
+    joinedOn: Date
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1706,6 +1713,7 @@ export namespace Prisma {
     profilePictureUrl?: boolean
     password?: boolean
     isAuthor?: boolean
+    joinedOn?: boolean
     posts?: boolean | User$postsArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
     likedPosts?: boolean | User$likedPostsArgs<ExtArgs>
@@ -1721,6 +1729,7 @@ export namespace Prisma {
     profilePictureUrl?: boolean
     password?: boolean
     isAuthor?: boolean
+    joinedOn?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1731,6 +1740,7 @@ export namespace Prisma {
     profilePictureUrl?: boolean
     password?: boolean
     isAuthor?: boolean
+    joinedOn?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1741,9 +1751,10 @@ export namespace Prisma {
     profilePictureUrl?: boolean
     password?: boolean
     isAuthor?: boolean
+    joinedOn?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "username" | "profilePictureUrl" | "password" | "isAuthor", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "username" | "profilePictureUrl" | "password" | "isAuthor" | "joinedOn", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | User$postsArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
@@ -1770,6 +1781,7 @@ export namespace Prisma {
       profilePictureUrl: string
       password: string
       isAuthor: boolean
+      joinedOn: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2204,6 +2216,7 @@ export namespace Prisma {
     readonly profilePictureUrl: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly isAuthor: FieldRef<"User", 'Boolean'>
+    readonly joinedOn: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -8294,7 +8307,8 @@ export namespace Prisma {
     username: 'username',
     profilePictureUrl: 'profilePictureUrl',
     password: 'password',
-    isAuthor: 'isAuthor'
+    isAuthor: 'isAuthor',
+    joinedOn: 'joinedOn'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -8448,6 +8462,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     isAuthor?: BoolFilter<"User"> | boolean
+    joinedOn?: DateTimeFilter<"User"> | Date | string
     posts?: PostListRelationFilter
     comments?: CommentListRelationFilter
     likedPosts?: LikePostListRelationFilter
@@ -8462,6 +8477,7 @@ export namespace Prisma {
     profilePictureUrl?: SortOrder
     password?: SortOrder
     isAuthor?: SortOrder
+    joinedOn?: SortOrder
     posts?: PostOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
     likedPosts?: LikePostOrderByRelationAggregateInput
@@ -8479,6 +8495,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     isAuthor?: BoolFilter<"User"> | boolean
+    joinedOn?: DateTimeFilter<"User"> | Date | string
     posts?: PostListRelationFilter
     comments?: CommentListRelationFilter
     likedPosts?: LikePostListRelationFilter
@@ -8493,6 +8510,7 @@ export namespace Prisma {
     profilePictureUrl?: SortOrder
     password?: SortOrder
     isAuthor?: SortOrder
+    joinedOn?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -8511,6 +8529,7 @@ export namespace Prisma {
     profilePictureUrl?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     isAuthor?: BoolWithAggregatesFilter<"User"> | boolean
+    joinedOn?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
   export type PostWhereInput = {
@@ -8803,6 +8822,7 @@ export namespace Prisma {
     profilePictureUrl?: string
     password: string
     isAuthor?: boolean
+    joinedOn?: Date | string
     posts?: PostCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     likedPosts?: LikePostCreateNestedManyWithoutUserInput
@@ -8817,6 +8837,7 @@ export namespace Prisma {
     profilePictureUrl?: string
     password: string
     isAuthor?: boolean
+    joinedOn?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     likedPosts?: LikePostUncheckedCreateNestedManyWithoutUserInput
@@ -8830,6 +8851,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     likedPosts?: LikePostUpdateManyWithoutUserNestedInput
@@ -8844,6 +8866,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     likedPosts?: LikePostUncheckedUpdateManyWithoutUserNestedInput
@@ -8858,6 +8881,7 @@ export namespace Prisma {
     profilePictureUrl?: string
     password: string
     isAuthor?: boolean
+    joinedOn?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -8867,6 +8891,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -8877,6 +8902,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostCreateInput = {
@@ -9161,6 +9187,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type PostListRelationFilter = {
     every?: PostWhereInput
     some?: PostWhereInput
@@ -9209,6 +9246,7 @@ export namespace Prisma {
     profilePictureUrl?: SortOrder
     password?: SortOrder
     isAuthor?: SortOrder
+    joinedOn?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -9223,6 +9261,7 @@ export namespace Prisma {
     profilePictureUrl?: SortOrder
     password?: SortOrder
     isAuthor?: SortOrder
+    joinedOn?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -9233,6 +9272,7 @@ export namespace Prisma {
     profilePictureUrl?: SortOrder
     password?: SortOrder
     isAuthor?: SortOrder
+    joinedOn?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -9281,7 +9321,7 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -9289,7 +9329,10 @@ export namespace Prisma {
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type CategoryListRelationFilter = {
@@ -9351,20 +9394,6 @@ export namespace Prisma {
   export type PostSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type CategoryCountOrderByAggregateInput = {
@@ -9560,6 +9589,10 @@ export namespace Prisma {
     set?: boolean
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type PostUpdateManyWithoutUserNestedInput = {
     create?: XOR<PostCreateWithoutUserInput, PostUncheckedCreateWithoutUserInput> | PostCreateWithoutUserInput[] | PostUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PostCreateOrConnectWithoutUserInput | PostCreateOrConnectWithoutUserInput[]
@@ -9724,10 +9757,6 @@ export namespace Prisma {
     connectOrCreate?: LikePostCreateOrConnectWithoutPostInput | LikePostCreateOrConnectWithoutPostInput[]
     createMany?: LikePostCreateManyPostInputEnvelope
     connect?: LikePostWhereUniqueInput | LikePostWhereUniqueInput[]
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type CategoryUpdateManyWithoutPostsNestedInput = {
@@ -10014,6 +10043,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -10064,17 +10104,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -10315,6 +10344,7 @@ export namespace Prisma {
     profilePictureUrl?: string
     password: string
     isAuthor?: boolean
+    joinedOn?: Date | string
     comments?: CommentCreateNestedManyWithoutUserInput
     likedPosts?: LikePostCreateNestedManyWithoutUserInput
     likedComments?: LikeCommentCreateNestedManyWithoutUserInput
@@ -10328,6 +10358,7 @@ export namespace Prisma {
     profilePictureUrl?: string
     password: string
     isAuthor?: boolean
+    joinedOn?: Date | string
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     likedPosts?: LikePostUncheckedCreateNestedManyWithoutUserInput
     likedComments?: LikeCommentUncheckedCreateNestedManyWithoutUserInput
@@ -10422,6 +10453,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: CommentUpdateManyWithoutUserNestedInput
     likedPosts?: LikePostUpdateManyWithoutUserNestedInput
     likedComments?: LikeCommentUpdateManyWithoutUserNestedInput
@@ -10435,6 +10467,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     likedPosts?: LikePostUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: LikeCommentUncheckedUpdateManyWithoutUserNestedInput
@@ -10527,6 +10560,7 @@ export namespace Prisma {
     profilePictureUrl?: string
     password: string
     isAuthor?: boolean
+    joinedOn?: Date | string
     posts?: PostCreateNestedManyWithoutUserInput
     likedPosts?: LikePostCreateNestedManyWithoutUserInput
     likedComments?: LikeCommentCreateNestedManyWithoutUserInput
@@ -10540,6 +10574,7 @@ export namespace Prisma {
     profilePictureUrl?: string
     password: string
     isAuthor?: boolean
+    joinedOn?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     likedPosts?: LikePostUncheckedCreateNestedManyWithoutUserInput
     likedComments?: LikeCommentUncheckedCreateNestedManyWithoutUserInput
@@ -10618,6 +10653,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutUserNestedInput
     likedPosts?: LikePostUpdateManyWithoutUserNestedInput
     likedComments?: LikeCommentUpdateManyWithoutUserNestedInput
@@ -10631,6 +10667,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     likedPosts?: LikePostUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: LikeCommentUncheckedUpdateManyWithoutUserNestedInput
@@ -10729,6 +10766,7 @@ export namespace Prisma {
     profilePictureUrl?: string
     password: string
     isAuthor?: boolean
+    joinedOn?: Date | string
     posts?: PostCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     likedComments?: LikeCommentCreateNestedManyWithoutUserInput
@@ -10742,6 +10780,7 @@ export namespace Prisma {
     profilePictureUrl?: string
     password: string
     isAuthor?: boolean
+    joinedOn?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     likedComments?: LikeCommentUncheckedCreateNestedManyWithoutUserInput
@@ -10808,6 +10847,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     likedComments?: LikeCommentUpdateManyWithoutUserNestedInput
@@ -10821,6 +10861,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: LikeCommentUncheckedUpdateManyWithoutUserNestedInput
@@ -10851,6 +10892,7 @@ export namespace Prisma {
     profilePictureUrl?: string
     password: string
     isAuthor?: boolean
+    joinedOn?: Date | string
     posts?: PostCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     likedPosts?: LikePostCreateNestedManyWithoutUserInput
@@ -10864,6 +10906,7 @@ export namespace Prisma {
     profilePictureUrl?: string
     password: string
     isAuthor?: boolean
+    joinedOn?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     likedPosts?: LikePostUncheckedCreateNestedManyWithoutUserInput
@@ -10916,6 +10959,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     likedPosts?: LikePostUpdateManyWithoutUserNestedInput
@@ -10929,6 +10973,7 @@ export namespace Prisma {
     profilePictureUrl?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isAuthor?: BoolFieldUpdateOperationsInput | boolean
+    joinedOn?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     likedPosts?: LikePostUncheckedUpdateManyWithoutUserNestedInput

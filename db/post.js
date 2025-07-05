@@ -13,7 +13,9 @@ class Post {
 				},
 				include: {
 					categories: true,
-					likes: true
+					likes: true,
+					comments: true,
+					user:true,
 				}
 			});
 			return posts;
