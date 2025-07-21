@@ -71,6 +71,10 @@ const validationChain = [
 		.isBoolean()
 		.withMessage("The is published field must be a boolean value.")
 		.optional({ values: "falsy" }),
+	body("categories")
+		.isArray({ min: 1 })
+		.withMessage("At least one category should be selected.")
+		.bail(),
 	body("categories.*.id")
 		.trim()
 		.notEmpty()

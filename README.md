@@ -62,3 +62,8 @@ This is a RESTful API for a blogging platform that allows users to create, read,
 | POST   | `/posts/:postId/comments/:commentId/likes`                  | Like a comment               |
 | DELETE | `/posts/:postId/comments/:commentId/likes`                  | Remove like from a comment   |
 
+---
+
+## TODO
+
+[ ] - Validate read time in the post model.

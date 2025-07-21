@@ -15,7 +15,17 @@ const postsController = {
 
 	getAllPosts: async (req, res) => {
 		const posts = await postModel.getAllPosts();
+		const { searchTerm } = req.query;
 		const { categories } = req.query;
+
+		if (searchTerm) {
+			const posts = await postModel.getPostsBySearchTerm(searchTerm);
+			return res.json({
+				success: true,
+				message: "Posts filtered by search term successfully!",
+				posts: posts,
+			})
+		}
 
 		if (categories) {
 			const posts = await postModel.getPostsByCategories(categories);
@@ -39,6 +49,7 @@ const postsController = {
 			content,
 			imageUrl,
 			shortDescription,
+			readTime,
 			categories
 		} = req.body;
 		const { jwt: token } = req.cookies;
@@ -50,6 +61,7 @@ const postsController = {
 			content,
 			imageUrl,
 			shortDescription,
+			readTime,
 			categories,
 		);
 		res.json({
@@ -88,7 +100,7 @@ const postsController = {
 			updatedPost = await postModel.partialPostUpdate(postId, "shortDescription", shortDescription);
 		}
 
-		if (isPublished) {
+		if (isPublished !== undefined) {
 			updatedPost = await postModel.partialPostUpdate(postId, "isPublished", isPublished);
 		}
 

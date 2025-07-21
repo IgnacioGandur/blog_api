@@ -28,6 +28,16 @@ const validationChain = [
 		.trim()
 		.notEmpty()
 		.withMessage("The post short description can't be empty."),
+	body("readTime")
+		.trim()
+		.notEmpty()
+		.withMessage("The read time field can't be empty.")
+		.isInt()
+		.withMessage("The read time field should be an integer.")
+		.bail()
+		.customSanitizer((readTime) => {
+			return Number(readTime)
+		}),
 	body("categories")
 		.isArray({ min: 1 })
 		.withMessage("You must select at least one category for the post."),

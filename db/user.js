@@ -52,13 +52,15 @@ class User {
 					id: Number(id),
 				},
 				include: {
-					_count: {
-						select: {
-							posts: true,
+					posts: {
+						include: {
 							comments: true,
-							likedPosts: true,
-						}
-					}
+							likes: true,
+							categories: true,
+						},
+					},
+					comments: true,
+					likedPosts: true,
 				}
 			})
 

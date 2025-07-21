@@ -15,7 +15,10 @@ class Post {
 					categories: true,
 					likes: true,
 					comments: true,
-					user:true,
+					user: true,
+				},
+				orderBy: {
+					createdAt: "desc"
 				}
 			});
 			return posts;
@@ -34,9 +37,16 @@ class Post {
 				include: {
 					categories: true,
 					likes: true,
-					comments: true
+					// comments: true,
+					comments: {
+						include: {
+							user: true
+						}
+					},
+					user: true
 				}
 			})
+			console.log("post:", post);
 
 			return post;
 		} catch (error) {
@@ -52,6 +62,7 @@ class Post {
 		content,
 		imageUrl,
 		shortDescription,
+		readTime,
 		categories,
 	) {
 		try {
@@ -61,6 +72,7 @@ class Post {
 					content,
 					imageUrl,
 					shortDescription,
+					readTime,
 					categories: {
 						connect: categories
 					},
@@ -174,16 +186,39 @@ class Post {
 				},
 				include: {
 					categories: true,
-					likes: true
+					comments: true,
+					likes: true,
+					user: true,
 				}
 			})
-
-			console.log("the content of posts is:", posts);
 
 			return posts;
 		} catch (error) {
 			console.error("Prisma error:", error);
 			throw new Error("Something went wrong when trying to filter posts by it's categories.");
+		}
+	}
+
+	async getPostsBySearchTerm(searchTerm) {
+		try {
+			const posts = await this.prisma.post.findMany({
+				where: {
+					title: {
+						contains: searchTerm
+					}
+				},
+				include: {
+					categories: true,
+					comments: true,
+					likes: true,
+					user: true,
+				}
+			})
+
+			return posts;
+		} catch (error) {
+			console.error("Prisma error:", error);
+			throw new Error("Something went wrong when trying to filter posts by a search term.");
 		}
 	}
 }
