@@ -37,7 +37,6 @@ class Post {
 				include: {
 					categories: true,
 					likes: true,
-					// comments: true,
 					comments: {
 						include: {
 							user: true
@@ -46,7 +45,6 @@ class Post {
 					user: true
 				}
 			})
-			console.log("post:", post);
 
 			return post;
 		} catch (error) {
