@@ -19,6 +19,14 @@ import("./middleware/passport/passport.js");
 
 app.use("/api", router);
 
+// Handle requests to non existing routes.
+app.use((_req, res) => {
+	res.json({
+		success: false,
+		message: "The route you are looking for doesn't exists."
+	})
+})
+
 app.listen(3000, () => {
 	console.log("Api running on: http://localhost:3000/");
 })

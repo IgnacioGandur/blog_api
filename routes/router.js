@@ -10,6 +10,5 @@ router.use("/auth/users", authRouter);
 router.use("/users", usersRouter);
 router.use("/posts", postsRouter);
 router.use("/categories", categoriesRouter);
-// TODO: write the not found route.
 
 export default router;
