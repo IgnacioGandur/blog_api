@@ -39,7 +39,8 @@ class Post {
 					likes: true,
 					comments: {
 						include: {
-							user: true
+							user: true,
+							likes: true,
 						}
 					},
 					user: true
