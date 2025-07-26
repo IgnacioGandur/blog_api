@@ -24,6 +24,7 @@ const validationChain = [
 	firstNameValidationChain,
 	lastNameValidationChain,
 	body("profilePictureUrl")
+		.optional()
 		.trim()
 		.notEmpty()
 		.withMessage("The profile picture image url can't be empty.")
