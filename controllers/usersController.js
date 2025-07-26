@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import userModel from "../db/user.js";
+import bcrypt from "bcryptjs";
 
 const cookieOptions = {
 	maxAge: 1000 * 60 * 60 * 24 * 30,
@@ -35,6 +36,33 @@ const usersController = {
 	},
 
 	partialUserUpdate: async (req, res) => {
+		const {
+			firstName,
+			lastName,
+			profilePictureUrl,
+			password,
+		} = req.body;
+		const { jwt: token } = req.cookies;
+		const decodedToken = jwt.decode(token);
+		const { id: userId } = decodedToken;
+		const hashedPassword = await bcrypt.hash(password, Number(process.env.BCRYPT_SALT));
+		const fieldsToUpdate = {
+			firstName,
+			lastName,
+			profilePictureUrl,
+			password: hashedPassword,
+		}
+
+		const updatedUser = await userModel.partialUserUpdate(userId, fieldsToUpdate);
+
+		return res.json({
+			success: true,
+			message: "User updated correctly!",
+			user: updatedUser,
+		})
+	},
+
+	partialUserAuthorUpdate: async (req, res) => {
 		const { isAuthor } = req.body;
 		const { jwt: token } = req.cookies;
 		const decodedToken = jwt.decode(token);

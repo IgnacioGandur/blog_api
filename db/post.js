@@ -203,8 +203,9 @@ class Post {
 			const posts = await this.prisma.post.findMany({
 				where: {
 					title: {
-						contains: searchTerm
-					}
+						contains: searchTerm,
+						mode: "insensitive"
+					},
 				},
 				include: {
 					categories: true,

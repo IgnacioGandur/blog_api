@@ -159,6 +159,24 @@ class User {
 			throw new Error("Something went wrong when trying to update a user's author status.");
 		}
 	}
+
+	async partialUserUpdate(userId, fieldsToUpdate) {
+		try {
+			const updatedUser = await this.prisma.user.update({
+				where: {
+					id: Number(userId),
+				},
+				data: {
+					...fieldsToUpdate
+				}
+			})
+
+			return updatedUser;
+		} catch (error) {
+			console.error("Prisma error:", error);
+			throw new Error("Something went wrong when trying to update user's information.");
+		}
+	}
 }
 
 export default new User(prisma);

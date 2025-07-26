@@ -4,7 +4,8 @@ import usersController from "../controllers/usersController.js";
 // Validators
 import checkIfUserIsLogged from "../middleware/checkIfUserIsLogged.js";
 import validateUserDeletion from "../middleware/validators/user/validateUserDeletion.js";
-import validateUserAuthorUpdate from "../middleware/validators/user/validateUserAuthorUpdate.js"
+import validateUserAuthorUpdate from "../middleware/validators/user/validateUserAuthorUpdate.js";
+import validateUserUpdate from "../middleware/validators/user/validateUserUpdate.js";
 
 const usersRouter = Router();
 
@@ -18,17 +19,21 @@ usersRouter
 
 usersRouter
 	.route("/me")
+	.all(checkIfUserIsLogged)
 	.get(
-		checkIfUserIsLogged,
 		usersController.getUser
-	);
+	).patch(
+		validateUserUpdate,
+		usersController.partialUserUpdate
+	)
+	;
 
 usersRouter
 	.route("/me/author")
 	.patch(
 		checkIfUserIsLogged,
 		validateUserAuthorUpdate,
-		usersController.partialUserUpdate
+		usersController.partialUserAuthorUpdate
 	);
 
 export default usersRouter;

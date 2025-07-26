@@ -27,11 +27,15 @@ const validationChain = [
 	body("shortDescription")
 		.trim()
 		.notEmpty()
-		.withMessage("The post short description can't be empty."),
+		.withMessage("The post short description can't be empty.")
+		.bail()
+		.isLength({ min: 5, max: 100 })
+	,
 	body("readTime")
 		.trim()
 		.notEmpty()
 		.withMessage("The read time field can't be empty.")
+		.bail()
 		.isInt()
 		.withMessage("The read time field should be an integer.")
 		.bail()

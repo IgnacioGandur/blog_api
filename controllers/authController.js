@@ -43,7 +43,7 @@ const authController = {
 				message: "The password is not correct."
 			})
 		} else {
-			const jwtToken = jwt.sign(user, process.env.JWT_SECRET);
+			const jwtToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
 			res.cookie("jwt", jwtToken, cookieOptions);
 			res.json({
 				success: true,
