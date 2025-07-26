@@ -59,7 +59,14 @@ const validationChain = [
 		.isURL()
 		.withMessage("The image URL field must be a valid URL.")
 		.bail()
-		.matches(imageExtensionsRegex)
+		.custom(async (url) => {
+			const result = await fetch(url, { method: "HEAD" });
+			const isImage = result.headers.get("Content-Type").startsWith("image");
+			if (!isImage) {
+				throw new Error("The post image URL should point to an image.")
+			}
+			return true;
+		})
 		.withMessage("The image URL field should point to an image url (jpg, jpeg, png, gif, bmp, or webp).")
 		.optional({ values: "falsy" }),
 	body("shortDescription")

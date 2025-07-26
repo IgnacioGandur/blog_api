@@ -24,7 +24,7 @@ const validationChain = [
 	firstNameValidationChain,
 	lastNameValidationChain,
 	body("profilePictureUrl")
-		.optional()
+		.optional({ values: "falsy" })
 		.trim()
 		.notEmpty()
 		.withMessage("The profile picture image url can't be empty.")
@@ -32,10 +32,17 @@ const validationChain = [
 		.isURL()
 		.withMessage("The profile picture URL should be an URL")
 		.bail()
-		.matches(imageExtensionsRegex)
-		.withMessage("The profile picture URL should point to an image url (jpg, jpeg, png, gif, bmp, or webp).")
+		.custom(async (url) => {
+			const result = await fetch(url, { method: "HEAD" });
+			const isImage = result.headers.get("Content-Type").startsWith("image");
+			if (!isImage) {
+				throw new Error("The profile picture URL should point to a valid image URL.")
+			}
+			return true;
+		})
 		.bail(),
 	body("password")
+		.optional({ values: "falsy" })
 		.trim()
 		.notEmpty()
 		.withMessage("The password field can't be empty.")
