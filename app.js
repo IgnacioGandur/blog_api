@@ -10,7 +10,7 @@ selfPing(process.env.SERVER_URL);
 
 const app = express();
 app.use(cors({
-	origin: "https://ignaciogandursblog.netlify.app/",
+	origin: "https://ignaciogandursblog.netlify.app",
 	credentials: true
 }));
 app.use(express.json());
