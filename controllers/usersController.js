@@ -36,21 +36,24 @@ const usersController = {
 	},
 
 	partialUserUpdate: async (req, res) => {
+		const { jwt: token } = req.cookies;
+		const decodedToken = jwt.decode(token);
+		const { id: userId } = decodedToken;
 		const {
 			firstName,
 			lastName,
 			profilePictureUrl,
 			password,
 		} = req.body;
-		const { jwt: token } = req.cookies;
-		const decodedToken = jwt.decode(token);
-		const { id: userId } = decodedToken;
-		const hashedPassword = await bcrypt.hash(password, Number(process.env.BCRYPT_SALT));
 		const fieldsToUpdate = {
 			firstName,
 			lastName,
 			profilePictureUrl,
-			password: hashedPassword,
+			password
+		}
+		if (password) {
+			fieldsToUpdate.password = await bcrypt.hash(password, Number(process.env.BCRYPT_SALT));
+			console.log("Updated password has been hashed 🔐")
 		}
 
 		const updatedUser = await userModel.partialUserUpdate(userId, fieldsToUpdate);
