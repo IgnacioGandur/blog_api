@@ -4,6 +4,9 @@ import router from "./routes/router.js";
 import passport from "passport";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import selfPing from "./utilities/selfPing.js";
+
+selfPing(process.env.SERVER_URL);
 
 const app = express();
 app.use(cors({
