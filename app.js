@@ -10,7 +10,7 @@ selfPing(process.env.SERVER_URL);
 
 const app = express();
 app.use(cors({
-	origin: process.env.CORS_ORIGIN,
+	origin: "https://blog-api-v0hb.onrender.com",
 	credentials: true
 }));
 app.use(express.json());
