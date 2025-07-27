@@ -37,6 +37,7 @@ const validationChain = [
 		.withMessage("The post short description can't be empty.")
 		.bail()
 		.isLength({ min: 5, max: 100 })
+		.withMessage("The post's short description should be between 5 and 100 characters long.")
 	,
 	body("readTime")
 		.trim()
